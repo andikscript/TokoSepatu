@@ -9,3 +9,6 @@
         "id": "B05"
     }
 }
+
+// library bawaan Intellij untuk mengubah dari tabel ke object (JPA Entities from DB)
+JPA Buddy
