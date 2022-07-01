@@ -1,0 +1,11 @@
+// JSON POST (add sepatu)
+{
+    "namaProduk": "Adidas",
+    "ukuran": 39,
+    "warna": "Kuning",
+    "stok": 50,
+    "harga": 150000,
+    "idBrand": {
+        "id": "B05"
+    }
+}
