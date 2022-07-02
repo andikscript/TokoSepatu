@@ -34,4 +34,15 @@ public class SepatuController {
     public Sepatu addSepatu(@RequestBody Sepatu sepatu) {
         return sepatuRepository.save(sepatu);
     }
+
+    // url api dengan request header harus disertai header X-COM-PERSIST = true
+    // dan X-COM-LOCATION bersifat opsional
+    @PostMapping(value = "/sepatuheader",
+            consumes = "application/json",
+            produces = "application/json")
+    public Sepatu addSepatuWithHeader(@RequestHeader(name = "X-COM-PERSIST", required = true) String headerPersist,
+                                      @RequestHeader(name = "X-COM-LOCATION", required = false) String headerLocation,
+                                      @RequestBody Sepatu sepatu) {
+        return sepatuRepository.save(sepatu);
+    }
 }

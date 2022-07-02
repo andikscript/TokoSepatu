@@ -12,3 +12,7 @@
 
 // library bawaan Intellij untuk mengubah dari tabel ke object (JPA Entities from DB)
 JPA Buddy
+
+// jika akses api/sepatuheader untuk post data maka harus disertai header :
+X-COM-PERSIST = true
+X-COM-LOCATION = false (opsional bisa diikutkan bisa tidak)
