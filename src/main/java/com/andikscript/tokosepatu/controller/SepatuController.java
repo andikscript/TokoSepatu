@@ -4,6 +4,7 @@ import com.andikscript.tokosepatu.exception.ResourceNotFoundException;
 import com.andikscript.tokosepatu.model.Sepatu;
 import com.andikscript.tokosepatu.repository.SepatuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,5 +45,16 @@ public class SepatuController {
                                       @RequestHeader(name = "X-COM-LOCATION", required = false) String headerLocation,
                                       @RequestBody Sepatu sepatu) {
         return sepatuRepository.save(sepatu);
+    }
+
+    @PutMapping(value = "/sepatu/{id}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Object> putSiswa(@PathVariable(value = "id") Integer id, @RequestBody Sepatu sepatu) {
+        Optional<Sepatu> getSepatu =  sepatuRepository.findById(id);
+        if (!getSepatu.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        sepatu.setId(id);
+        sepatuRepository.save(sepatu);
+        return ResponseEntity.noContent().build();
     }
 }
