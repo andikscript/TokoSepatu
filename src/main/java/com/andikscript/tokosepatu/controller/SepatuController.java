@@ -2,8 +2,13 @@ package com.andikscript.tokosepatu.controller;
 
 import com.andikscript.tokosepatu.exception.ResourceNotFoundException;
 import com.andikscript.tokosepatu.model.Sepatu;
+import com.andikscript.tokosepatu.patch.SepatuPatch;
 import com.andikscript.tokosepatu.repository.SepatuRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +52,7 @@ public class SepatuController {
         return sepatuRepository.save(sepatu);
     }
 
+    // metode put adalah mengganti nilai seluruh baris dengan nilai yang baru alhasil memerlukan waktu yang agak lama
     @PutMapping(value = "/sepatu/{id}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> putSiswa(@PathVariable(value = "id") Integer id, @RequestBody Sepatu sepatu) {
         Optional<Sepatu> getSepatu =  sepatuRepository.findById(id);
@@ -56,5 +62,21 @@ public class SepatuController {
         sepatu.setId(id);
         sepatuRepository.save(sepatu);
         return ResponseEntity.noContent().build();
+    }
+
+    // metode patch adalah mengganti nilai kolom bagian tertentu saja dari baris alhasil memerlukan waktu yang cepat
+    @PatchMapping(path = "/sepatu/{id}", consumes = "application/json-patch+json")
+    public ResponseEntity<Sepatu> patchSiswa(@PathVariable(value = "id") Integer id,
+                                             @RequestBody JsonPatch patch) throws ResourceNotFoundException {
+        try {
+            Sepatu sepatu = sepatuRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Not Found"));
+            Sepatu sepatuPatch = SepatuPatch.applyToSepatu(patch, sepatu);
+            sepatuRepository.save(sepatuPatch);
+            return ResponseEntity.ok(sepatuPatch);
+        } catch (JsonPatchException | JsonProcessingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }
