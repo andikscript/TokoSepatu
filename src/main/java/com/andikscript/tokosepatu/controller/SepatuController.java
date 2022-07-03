@@ -79,4 +79,18 @@ public class SepatuController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    @DeleteMapping(value = "/sepatu/{id}")
+    public ResponseEntity deleteSiswa(@PathVariable(value = "id") Integer id) {
+        Optional<Sepatu> getSepatu = sepatuRepository.findById(id);
+
+        if (!getSepatu.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        sepatuRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+//        sepatuRepository.deleteById(id);
+//        return ResponseEntity.ok().build();
+    }
 }
