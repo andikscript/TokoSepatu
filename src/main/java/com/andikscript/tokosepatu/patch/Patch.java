@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
 
-public class SepatuPatch {
+public class Patch {
 
     // method yang digunakan untuk menambal / patch terhadap suatu object yang akan di ubah di @PatchMapping
     public static Sepatu applyToSepatu(

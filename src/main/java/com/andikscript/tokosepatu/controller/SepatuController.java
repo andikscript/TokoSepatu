@@ -2,7 +2,7 @@ package com.andikscript.tokosepatu.controller;
 
 import com.andikscript.tokosepatu.exception.ResourceNotFoundException;
 import com.andikscript.tokosepatu.model.Sepatu;
-import com.andikscript.tokosepatu.patch.SepatuPatch;
+import com.andikscript.tokosepatu.patch.Patch;
 import com.andikscript.tokosepatu.repository.SepatuRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.fge.jsonpatch.JsonPatch;
@@ -70,7 +70,7 @@ public class SepatuController {
                                              @RequestBody JsonPatch patch) throws ResourceNotFoundException {
         try {
             Sepatu sepatu = sepatuRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Not Found"));
-            Sepatu sepatuPatch = SepatuPatch.applyToSepatu(patch, sepatu);
+            Sepatu sepatuPatch = Patch.applyToSepatu(patch, sepatu);
             sepatuRepository.save(sepatuPatch);
             return ResponseEntity.ok(sepatuPatch);
         } catch (JsonPatchException | JsonProcessingException e) {
