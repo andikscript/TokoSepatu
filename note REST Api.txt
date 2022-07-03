@@ -25,7 +25,7 @@ Content-Type = application/json-patch+json
 [
     {
         "op": "replace",
-        "path": "(nama kolom yang akan di ubah)",
+        "path": "/(nama kolom yang akan di ubah)",
         "value": "(nilai baru)"
     }
 ]
@@ -33,7 +33,7 @@ Content-Type = application/json-patch+json
 [
     {
         "op": "add",
-        "path": "(nama kolom yang akan di ubah)",
+        "path": "/(nama kolom yang akan di ubah)",
         "value": "(nilai yang akan ditambahkan)"
     }
 ]
