@@ -17,6 +17,27 @@ JPA Buddy
 X-COM-PERSIST = true
 X-COM-LOCATION = false (opsional bisa diikutkan bisa tidak)
 
+// Format untuk update menggunakan PATCH
+- Header : 
+Content-Type = application/json-patch+json
+- Body :
+// update menggunakan patch
+[
+    {
+        "op": "replace",
+        "path": "(nama kolom yang akan di ubah)",
+        "value": "(nilai baru)"
+    }
+]
+// menambahkan value 
+[
+    {
+        "op": "add",
+        "path": "(nama kolom yang akan di ubah)",
+        "value": "(nilai yang akan ditambahkan)"
+    }
+]
+
 // http response code
 1XX Information Responses
 100 Continue
