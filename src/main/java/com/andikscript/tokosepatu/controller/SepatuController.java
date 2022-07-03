@@ -90,7 +90,5 @@ public class SepatuController {
 
         sepatuRepository.deleteById(id);
         return ResponseEntity.ok().build();
-//        sepatuRepository.deleteById(id);
-//        return ResponseEntity.ok().build();
     }
 }
