@@ -65,7 +65,7 @@ public class SepatuController {
     }
 
     // metode patch adalah mengganti nilai kolom bagian tertentu saja dari baris alhasil memerlukan waktu yang cepat
-    @PatchMapping(path = "/sepatu/{id}", consumes = "application/json-patch+json")
+    @PatchMapping(value = "/sepatu/{id}", consumes = "application/json-patch+json")
     public ResponseEntity<Sepatu> patchSiswa(@PathVariable(value = "id") Integer id,
                                              @RequestBody JsonPatch patch) throws ResourceNotFoundException {
         try {
