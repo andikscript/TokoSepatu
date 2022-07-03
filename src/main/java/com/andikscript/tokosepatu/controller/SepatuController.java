@@ -23,8 +23,14 @@ public class SepatuController {
     }
 
     @GetMapping(value = "/sepatu/{id}", produces = "application/json")
-    public Optional<Sepatu> getSepatu(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
-        return sepatuRepository.findById(id);
+    public Sepatu getSepatu(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
+        Optional<Sepatu> sepatu = sepatuRepository.findById(id);
+
+        if (!sepatu.isPresent()) {
+            throw new ResourceNotFoundException("");
+        }
+
+        return sepatu.get();
     }
 
     // consumes digunakan untuk menentukan tipe apa yang di izinkan untuk dikirim
