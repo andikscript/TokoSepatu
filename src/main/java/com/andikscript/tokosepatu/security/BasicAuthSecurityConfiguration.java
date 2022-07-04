@@ -22,7 +22,7 @@ public class BasicAuthSecurityConfiguration {
     // memperbolehkan akses tanpa menggunakan username dan password
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        // format jika accept semua data brang : /api/brand/
+        // format jika accept semua data barang : /api/brand/
         return (web) -> web.ignoring().antMatchers("/api/brand/B01", "/api/brand/B02");
     }
 }
