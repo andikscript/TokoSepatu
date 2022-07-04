@@ -17,6 +17,8 @@ public class BasicAuthSecurityConfiguration {
                 .authorizeHttpRequests((authz) -> authz
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
+                // agar client dan server tidak cache username password
+                // dan setiap kali request menggunakan username password
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
