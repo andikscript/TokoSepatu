@@ -22,19 +22,19 @@ public class SepatuController {
     private SepatuRepository sepatuRepository;
 
     // produces digunakan untuk mengirim balik tipe dokumen ke client
-    @GetMapping(value = "/sepatu", produces = "application/json")
+    @GetMapping(value = "/shoeses", produces = "application/json")
     public List<Sepatu> getAll() {
         return sepatuRepository.findAll();
     }
 
-    @GetMapping(value = "/sepatu/{id}", produces = "application/json")
+    @GetMapping(value = "/shoes/{id}", produces = "application/json")
     public Sepatu getSepatu(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
         return sepatuRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Not Found"));
     }
 
     // consumes digunakan untuk menentukan tipe apa yang di izinkan untuk dikirim
     // ke server
-    @PostMapping(value = "/sepatu",
+    @PostMapping(value = "/shoes",
             consumes = "application/json",
             produces = "application/json")
     public Sepatu addSepatu(@RequestBody Sepatu sepatu) {
@@ -43,7 +43,7 @@ public class SepatuController {
 
     // url api dengan request header harus disertai header X-COM-PERSIST = true
     // dan X-COM-LOCATION bersifat opsional
-    @PostMapping(value = "/sepatuheader",
+    @PostMapping(value = "/shoesheader",
             consumes = "application/json",
             produces = "application/json")
     public Sepatu addSepatuWithHeader(@RequestHeader(name = "X-COM-PERSIST", required = true) String headerPersist,
@@ -53,7 +53,7 @@ public class SepatuController {
     }
 
     // metode put adalah mengganti nilai seluruh baris dengan nilai yang baru alhasil memerlukan waktu yang agak lama
-    @PutMapping(value = "/sepatu/{id}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/shoes/{id}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> putSiswa(@PathVariable(value = "id") Integer id, @RequestBody Sepatu sepatu) {
         Optional<Sepatu> getSepatu =  sepatuRepository.findById(id);
         if (!getSepatu.isPresent()) {
@@ -65,7 +65,7 @@ public class SepatuController {
     }
 
     // metode patch adalah mengganti nilai kolom bagian tertentu saja dari baris alhasil memerlukan waktu yang cepat
-    @PatchMapping(value = "/sepatu/{id}", consumes = "application/json-patch+json")
+    @PatchMapping(value = "/shoes/{id}", consumes = "application/json-patch+json")
     public ResponseEntity<Sepatu> patchSiswa(@PathVariable(value = "id") Integer id,
                                              @RequestBody JsonPatch patch) throws ResourceNotFoundException {
         try {
@@ -80,7 +80,7 @@ public class SepatuController {
         }
     }
 
-    @DeleteMapping(value = "/sepatu/{id}")
+    @DeleteMapping(value = "/shoes/{id}")
     public ResponseEntity deleteSiswa(@PathVariable(value = "id") Integer id) {
         Optional<Sepatu> getSepatu = sepatuRepository.findById(id);
 

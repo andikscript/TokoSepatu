@@ -22,7 +22,7 @@ public class BrandController {
     @Autowired
     private BrandRepository brandRepository;
 
-    @GetMapping(value = "/brand", produces = "application/json")
+    @GetMapping(value = "/brands", produces = "application/json")
     public List<Brand> getBrandAll() {
         return brandRepository.findAll();
     }
