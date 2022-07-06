@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2022 at 05:14 PM
+-- Generation Time: Jul 06, 2022 at 04:11 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -46,6 +46,26 @@ INSERT INTO `brand` (`id_brand`, `nama_brand`, `kategori`) VALUES
 ('B06', 'Vans', 'Sneakers'),
 ('B07', 'League', 'Sneakers'),
 ('B08', 'League', 'Wedges');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`) VALUES
+(1, 'ROLE_USER'),
+(2, 'ROLE_MODERATOR'),
+(3, 'ROLE_ADMIN');
 
 -- --------------------------------------------------------
 
@@ -104,8 +124,27 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `email`, `username`, `password`) VALUES
-(2, 'andik', 'andikmindai@gmail.com', 'andikmindai', '266bff91c85b0d17c5b50033abce09b62cbc7f4610c6792f5108593de65ad3f8'),
-(3, 'andik', 'andi@gmail.com', 'andik', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+(6, 'andikgendu', 'andikgendu@gmail.com', 'andikgendu', '193584562604ce59423761a6df3d5eadb6ca33a359a53d259ac5cf7819fbfd7e'),
+(7, 'andik', 'andik@gmail.com', 'andik', 'ba36c506c35af6f80534693cdec259c6cd2188f199addcd1214a6f117b190dfa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `user_id` int(20) NOT NULL,
+  `roles_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`user_id`, `roles_id`) VALUES
+(6, 3),
+(7, 1);
 
 --
 -- Indexes for dumped tables
@@ -117,6 +156,12 @@ INSERT INTO `user` (`id_user`, `nama`, `email`, `username`, `password`) VALUES
 ALTER TABLE `brand`
   ADD PRIMARY KEY (`id_brand`),
   ADD KEY `id_brand` (`id_brand`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sepatu`
@@ -133,8 +178,22 @@ ALTER TABLE `user`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Indexes for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD PRIMARY KEY (`user_id`,`roles_id`),
+  ADD KEY `roles_id` (`roles_id`),
+  ADD KEY `user_id` (`user_id`,`roles_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sepatu`
@@ -146,7 +205,7 @@ ALTER TABLE `sepatu`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -157,6 +216,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `sepatu`
   ADD CONSTRAINT `sepatu_ibfk_1` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id_brand`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
