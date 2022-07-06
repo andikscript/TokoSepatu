@@ -10,16 +10,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api")
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
-    @GetMapping(value = "/user", produces = "application/json")
+    @GetMapping(value = "/users", produces = "application/json")
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
