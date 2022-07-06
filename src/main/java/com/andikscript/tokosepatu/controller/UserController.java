@@ -38,6 +38,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    // cek username dan password
     @GetMapping(value = "/userpass", consumes = "application/json")
     public boolean getUser(@RequestBody UserGet userget) {
         HashingSHA256 hash = new HashingSHA256();
