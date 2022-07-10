@@ -17,10 +17,6 @@ public class JwtResponse {
         this.roles = roles;
     }
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -31,5 +27,9 @@ public class JwtResponse {
 
     public List getRoles() {
         return roles;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
     }
 }
