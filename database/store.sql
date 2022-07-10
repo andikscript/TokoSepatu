@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2022 at 04:11 AM
+-- Generation Time: Jul 10, 2022 at 03:42 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -50,6 +50,27 @@ INSERT INTO `brand` (`id_brand`, `nama_brand`, `kategori`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `penjualan`
+--
+
+CREATE TABLE `penjualan` (
+  `id_penjualan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_sepatu` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `id_sepatu`, `jumlah`) VALUES
+(1, 7, 15, 2),
+(2, 7, 15, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -88,7 +109,7 @@ CREATE TABLE `sepatu` (
 --
 
 INSERT INTO `sepatu` (`id`, `nama_produk`, `ukuran`, `warna`, `stok`, `harga`, `id_brand`) VALUES
-(1, 'Converse', 38, 'Kuning', 100, 150000, 'B01'),
+(1, 'Converse', 38, 'Kuning', 200, 150000, 'B01'),
 (2, 'Converse', 39, 'Kuning', 100, 200000, 'B01'),
 (3, 'Converse', 40, 'Kuning', 50, 250000, 'B02'),
 (4, 'Converse', 41, 'Kuning', 45, 280000, 'B03'),
@@ -125,7 +146,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama`, `email`, `username`, `password`) VALUES
 (6, 'andikgendu', 'andikgendu@gmail.com', 'andikgendu', '193584562604ce59423761a6df3d5eadb6ca33a359a53d259ac5cf7819fbfd7e'),
-(7, 'andik', 'andik@gmail.com', 'andik', 'ba36c506c35af6f80534693cdec259c6cd2188f199addcd1214a6f117b190dfa');
+(7, 'andik', 'andik@gmail.com', 'andik', 'ba36c506c35af6f80534693cdec259c6cd2188f199addcd1214a6f117b190dfa'),
+(8, 'andikmindai', 'andikmindai@gmail.com', 'andikmindai', '$2a$10$xMXA9xBEqqWaFG0llyvjqu.IJBmB8YSJEbBBA2l3Mzw6aZzU38ERW'),
+(9, 'andikscript', 'andikscript@gmail.com', 'andikscript', '$2a$10$6TAsE7PCQz1SKzDaZELgDuDMb9NBR.NQxgVieMLCn2OQChtyZZTUO'),
+(10, 'gendu', 'gendu@gmail.com', 'gendu', '$2a$10$aovvn8NLSoTSSYqY.Lve9uzDhJVTmnuitHm7ffdXTEG88lG83CzDS');
 
 -- --------------------------------------------------------
 
@@ -144,7 +168,10 @@ CREATE TABLE `user_roles` (
 
 INSERT INTO `user_roles` (`user_id`, `roles_id`) VALUES
 (6, 3),
-(7, 1);
+(7, 1),
+(8, 3),
+(9, 2),
+(10, 3);
 
 --
 -- Indexes for dumped tables
@@ -156,6 +183,15 @@ INSERT INTO `user_roles` (`user_id`, `roles_id`) VALUES
 ALTER TABLE `brand`
   ADD PRIMARY KEY (`id_brand`),
   ADD KEY `id_brand` (`id_brand`);
+
+--
+-- Indexes for table `penjualan`
+--
+ALTER TABLE `penjualan`
+  ADD PRIMARY KEY (`id_penjualan`),
+  ADD KEY `id_penjualan` (`id_penjualan`),
+  ADD KEY `id_user` (`id_user`,`id_sepatu`),
+  ADD KEY `id_sepatu` (`id_sepatu`);
 
 --
 -- Indexes for table `roles`
@@ -190,6 +226,12 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT for table `penjualan`
+--
+ALTER TABLE `penjualan`
+  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -205,11 +247,18 @@ ALTER TABLE `sepatu`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `penjualan`
+--
+ALTER TABLE `penjualan`
+  ADD CONSTRAINT `penjualan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `penjualan_ibfk_2` FOREIGN KEY (`id_sepatu`) REFERENCES `sepatu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sepatu`
