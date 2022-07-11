@@ -1,4 +1,4 @@
-package com.andikscript.tokosepatu.controller;
+package com.andikscript.tokosepatu.controller.adminaccess;
 
 import com.andikscript.tokosepatu.model.UserRole;
 import com.andikscript.tokosepatu.repository.UserRolesRepository;

@@ -1,4 +1,4 @@
-package com.andikscript.tokosepatu.controller;
+package com.andikscript.tokosepatu.controller.adminaccess;
 
 import com.andikscript.tokosepatu.config.HashingSHA256;
 import com.andikscript.tokosepatu.model.User;

@@ -1,4 +1,4 @@
-package com.andikscript.tokosepatu.controller;
+package com.andikscript.tokosepatu.controller.adminaccess;
 
 import com.andikscript.tokosepatu.exception.ResourceNotFoundException;
 import com.andikscript.tokosepatu.model.Brand;

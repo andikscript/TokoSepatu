@@ -1,4 +1,4 @@
-package com.andikscript.tokosepatu.controller;
+package com.andikscript.tokosepatu.controller.test;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

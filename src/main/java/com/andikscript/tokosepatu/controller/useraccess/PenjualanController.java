@@ -1,4 +1,4 @@
-package com.andikscript.tokosepatu.controller;
+package com.andikscript.tokosepatu.controller.useraccess;
 
 import com.andikscript.tokosepatu.model.Brand;
 import com.andikscript.tokosepatu.model.Penjualan;
