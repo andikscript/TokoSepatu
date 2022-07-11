@@ -1,4 +1,6 @@
-# RestApiSpringBootOAuth
+# Toko Sepatu
+Simple Rest API with Spring boot and Security OAuth2 for sell shoes
+
 ## OAuth2
 
 ## Concept
