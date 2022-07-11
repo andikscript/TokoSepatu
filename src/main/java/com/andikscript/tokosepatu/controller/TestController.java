@@ -28,9 +28,9 @@ public class TestController {
         return "Moderator Content";
     }
 
-//    @GetMapping(value = "/admin")
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public String adminAccess() {
-//        return "Admin Content";
-//    }
+    @GetMapping(value = "/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String adminAccess() {
+        return "Admin Content";
+    }
 }
