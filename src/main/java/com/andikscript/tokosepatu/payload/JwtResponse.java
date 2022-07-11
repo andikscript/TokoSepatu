@@ -1,9 +1,8 @@
 package com.andikscript.tokosepatu.payload;
 
-import com.andikscript.tokosepatu.model.Role;
-
 import java.util.List;
 
+// object yang digunakan untuk menghandle response JWT yang akan diberikan ke user
 public class JwtResponse {
     private String accessToken;
     private String username;

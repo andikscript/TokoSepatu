@@ -19,10 +19,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity // memberitahu spring untuk menerapkan security untuk web secara global
 @EnableGlobalMethodSecurity(
         prePostEnabled = true
-)
+) // menyediakan keamanan AOP untuk mendukung access API menggunakan roles
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

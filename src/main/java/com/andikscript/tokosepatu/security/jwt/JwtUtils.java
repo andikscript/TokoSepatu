@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+// objek yang digunakan untuk menghasilkan username, tanggal, kedaluarsa, secret
+// mendapatkan nama pengguna dari JWT dan memvalidasi JWT
 @Component
 public class JwtUtils {
 
