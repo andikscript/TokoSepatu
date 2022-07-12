@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 03:42 AM
+-- Generation Time: Jul 12, 2022 at 12:28 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -67,6 +67,19 @@ CREATE TABLE `penjualan` (
 INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `id_sepatu`, `jumlah`) VALUES
 (1, 7, 15, 2),
 (2, 7, 15, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `refreshtoken`
+--
+
+CREATE TABLE `refreshtoken` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `token` varchar(2048) NOT NULL,
+  `expired_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -194,6 +207,14 @@ ALTER TABLE `penjualan`
   ADD KEY `id_sepatu` (`id_sepatu`);
 
 --
+-- Indexes for table `refreshtoken`
+--
+ALTER TABLE `refreshtoken`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -232,6 +253,12 @@ ALTER TABLE `penjualan`
   MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `refreshtoken`
+--
+ALTER TABLE `refreshtoken`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -259,6 +286,12 @@ ALTER TABLE `user`
 ALTER TABLE `penjualan`
   ADD CONSTRAINT `penjualan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `penjualan_ibfk_2` FOREIGN KEY (`id_sepatu`) REFERENCES `sepatu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `refreshtoken`
+--
+ALTER TABLE `refreshtoken`
+  ADD CONSTRAINT `refreshtoken_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sepatu`
