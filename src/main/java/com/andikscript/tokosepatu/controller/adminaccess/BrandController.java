@@ -43,7 +43,7 @@ public class BrandController {
 
     @PutMapping(value = "/brand/{id}", consumes = "application/json")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> putSiswa(@PathVariable(value = "id") String id, @RequestBody Brand brand) {
+    public ResponseEntity<Object> putBrand(@PathVariable(value = "id") String id, @RequestBody Brand brand) {
         Optional<Brand> getBrand = brandRepository.findById(id);
 
         if (!getBrand.isPresent()) {
