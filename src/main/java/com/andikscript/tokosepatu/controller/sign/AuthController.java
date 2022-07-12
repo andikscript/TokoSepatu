@@ -1,6 +1,5 @@
 package com.andikscript.tokosepatu.controller.sign;
 
-import com.andikscript.tokosepatu.config.HashingSHA256;
 import com.andikscript.tokosepatu.model.User;
 import com.andikscript.tokosepatu.model.UserGet;
 import com.andikscript.tokosepatu.payload.JwtResponse;
