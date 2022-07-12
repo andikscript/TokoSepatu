@@ -1,10 +1,10 @@
-package com.andikscript.tokosepatu.model;
+package com.andikscript.tokosepatu.payload;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-public class UserGet {
+public class UsernamePasswordGet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user", nullable = false)
