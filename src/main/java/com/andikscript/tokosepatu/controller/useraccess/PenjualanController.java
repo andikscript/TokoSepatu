@@ -20,6 +20,7 @@ public class PenjualanController {
     private PenjualanRepository penjualanRepository;
 
     @GetMapping(value = "/sells", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
     public List<Penjualan> getAllPenjualan() {
         return penjualanRepository.findAll();
     }
