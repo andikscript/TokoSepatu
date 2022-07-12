@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/sell-management")
 public class PenjualanController {
 
     @Autowired
